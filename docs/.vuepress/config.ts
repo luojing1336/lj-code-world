@@ -9,7 +9,7 @@
 //  import htmlModules from './config/htmlModules' // 自定义插入的html块
  
  export default defineConfig4CustomTheme<VdoingThemeConfig>({
-   base: './',
+   base: '/lj-code-world/',
 
    theme: 'vdoing', // 使用npm主题包
    // theme: resolve(__dirname, '../../vdoing'), // 使用本地主题包
