@@ -22,7 +22,7 @@ jobs:
         uses: jenkey2011/vuepress-deploy@master
         env:
           ACCESS_TOKEN: ${{ secrets.LJ_WEBSITE_DEPLOY }}
-          # TARGET_REPO: luojing1336/lj-website
+          TARGET_REPO: luojing1336/lj-code-world
           BUILD_SCRIPT: yarn && yarn build
           BUILD_DIR: docs/.vuepress/dist/
           COMMIT_MESSAGE: Auto deploy from Github Actions
