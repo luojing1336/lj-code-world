@@ -9,7 +9,6 @@
 //  import htmlModules from './config/htmlModules' // 自定义插入的html块
  
  export default defineConfig4CustomTheme<VdoingThemeConfig>({
-   base: '/lj-code-world/',
 
    theme: 'vdoing', // 使用npm主题包
    // theme: resolve(__dirname, '../../vdoing'), // 使用本地主题包
@@ -18,10 +17,11 @@
      '/': {
        lang: 'zh-CN',
        title: "Jing's blog",
-       description: 'web前端技术博客,专注web前端学习与总结。JavaScript,js,ES6,TypeScript,vue,React,python,css3,html5,Node,git,github等技术文章。',
+       description: 'A personal blog website, powered by VuePress, created by Jing LUO.',
      }
    },
-   // base: '/', // 默认'/'。如果你想将你的网站部署到如 https://foo.github.io/bar/，那么 base 应该被设置成 "/bar/",（否则页面将失去样式等文件）
+
+   base: '/lj-code-world/',// 默认'/'。如果你想将你的网站部署到如 https://foo.github.io/bar/，那么 base 应该被设置成 "/bar/",（否则页面将失去样式等文件）
  
    // 主题配置
    themeConfig: {
@@ -117,8 +117,8 @@
        },
      ],
      sidebarDepth: 2, // 侧边栏显示深度，默认1，最大2（显示到h3标题）
-     logo: '/img/logo.png', // 导航栏logo
-     repo: 'xugaoyi/vuepress-theme-vdoing', // 导航栏右侧生成Github链接
+     logo: 'lj-logo.png', // 导航栏logo
+     repo: 'luojing1336/lj-code-world', // 导航栏右侧生成Github链接
      searchMaxSuggestions: 10, // 搜索结果显示最大数
      lastUpdated: '上次更新', // 开启更新时间，并配置前缀文字   string | boolean (取值为git提交时间)
      docsDir: 'docs', // 编辑的文件夹
@@ -165,15 +165,15 @@
  
      // 文章默认的作者信息，(可在md文件中单独配置此信息) string | {name: string, link?: string}
      author: {
-       name: 'xugaoyi', // 必需
-       link: 'https://github.com/xugaoyi', // 可选的
+       name: 'loujing', // 必需
+       link: 'https://github.com/luojing1336', // 可选的
      },
  
      // 博主信息 (显示在首页侧边栏)
      blogger: {
-       avatar: 'https://fastly.jsdelivr.net/gh/xugaoyi/image_store/blog/20200103123203.jpg',
-       name: 'Evan Xu',
-       slogan: '前端界的小学生',
+       avatar: 'lj-avatar.png',
+       name: 'Jing LUO',
+       slogan: '代码界永远的初学者',
      },
  
      // 社交图标 (显示于博主信息栏和页脚栏。内置图标：https://doc.xugaoyi.com/pages/a20ce8/#social)
@@ -183,12 +183,12 @@
          {
            iconClass: 'icon-youjian',
            title: '发邮件',
-           link: 'mailto:894072666@qq.com',
+           link: 'mailto:luojing1336@hotmail.com',
          },
          {
            iconClass: 'icon-github',
            title: 'GitHub',
-           link: 'https://github.com/xugaoyi',
+           link: 'https://github.com/luojing1336',
          },
          {
            iconClass: 'icon-erji',
@@ -200,16 +200,16 @@
  
      // 页脚信息
      footer: {
-       createYear: 2019, // 博客创建年份
+       createYear: 2018, // 博客创建年份
        copyrightInfo:
-         'Evan Xu | <a href="https://github.com/xugaoyi/vuepress-theme-vdoing/blob/master/LICENSE" target="_blank">MIT License</a>', // 博客版权信息，支持a标签或换行标签</br>
+         'Jing LUO | <a href="https://github.com/xugaoyi/vuepress-theme-vdoing/blob/master/LICENSE" target="_blank">MIT License</a>', // 博客版权信息，支持a标签或换行标签</br>
      },
  
      // 扩展自动生成frontmatter。（当md文件的frontmatter不存在相应的字段时将自动添加。不会覆盖已有的数据。）
      extendFrontmatter: {
        author: {
-         name: 'xugaoyi',
-         link: 'https://github.com/xugaoyi'
+         name: 'luojing',
+         link: 'https://github.com/luojing1336'
        }
      },
  
@@ -227,7 +227,7 @@
          content: '前端博客,个人技术博客,前端,前端开发,前端框架,web前端,前端面试题,技术文档,学习,面试,JavaScript,js,ES6,TypeScript,vue,python,css3,html5,Node,git,github,markdown',
        },
      ],
-     ['meta', { name: 'baidu-site-verification', content: '7F55weZDDc' }], // 百度统计的站长验证（你可以去掉）
+    //  ['meta', { name: 'baidu-site-verification', content: '7F55weZDDc' }], // 百度统计的站长验证（你可以去掉）
      ['meta', { name: 'theme-color', content: '#11a8cd' }], // 移动浏览器主题颜色
      // [
      //   'script',
