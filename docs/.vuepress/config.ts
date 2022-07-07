@@ -17,7 +17,7 @@
    locales: {
      '/': {
        lang: 'zh-CN',
-       title: "Evan's blog",
+       title: "Jing's blog",
        description: 'web前端技术博客,专注web前端学习与总结。JavaScript,js,ES6,TypeScript,vue,React,python,css3,html5,Node,git,github等技术文章。',
      }
    },
