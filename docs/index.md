@@ -15,11 +15,11 @@ hero:
       link: /api-examples
 
 features:
-  - title: Code
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Knowledge
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Entertainment
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - title: 代码
+    details: 代码自留地，量变才能引起质变
+  - title: 知识
+    details: 知识积累地，有沉淀才会有蜕变
+  - title: 娱乐
+    details: 娱乐跑马地，会学会玩劳逸结合
 ---
 
