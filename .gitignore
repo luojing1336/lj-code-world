@@ -1,24 +1,39 @@
-# Logs
-logs
-*.log
+# Node dependencies
+node_modules/
+
+# Build output
+dist/
+.vitepress/dist/
+
+# Local env files
+.env
+.env.local
+.env.*.local
+
+# Log files
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
-lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+# OS generated
+.DS_Store
+Thumbs.db
 
 # Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
+.idea/
+.vscode/
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
-*.sw?
+
+# Optional: Mac/Linux swap/backup files
+*~
+*.swp
+*.bak
+*.tmp
+
+# Cache
+.vite/
+.cache/
