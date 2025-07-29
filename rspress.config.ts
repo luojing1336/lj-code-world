@@ -3,12 +3,13 @@ import { defineConfig } from 'rspress/config';
 
 export default defineConfig({
   root: path.join(__dirname, 'docs'),
-  title: 'lj的代码自留地',
-  icon: '/icon-lj-light-logo-192.png',
+  title: 'LJ Code World',
+  icon: '/icon-lj-light-logo-512.png',
   logo: {
-    light: '/icon-lj-light-logo-192.png',
-    dark: '/icon-lj-dark-logo-192.png',
+    light: '/icon-lj-light-logo-512.png',
+    dark: '/icon-lj-dark-logo-512.png',
   },
+  logoText: 'LJ Code World',
   themeConfig: {
     socialLinks: [
       {

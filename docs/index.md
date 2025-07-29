@@ -3,8 +3,8 @@ pageType: home
 
 hero:
   name: LJ Code World
-  text: 探索代码的无限可能，记录技术的成长轨迹
-  tagline: 在这里，每一行代码都承载着梦想，每一次学习都是向前的脚步
+  text: 探索自己的无限可能
+  tagline: 每一行代码都承载着梦想，每一次学习都是向前的脚步
   actions:
     - theme: brand
       text: 🚀 开启探索之旅
