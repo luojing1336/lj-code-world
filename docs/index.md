@@ -8,7 +8,7 @@ hero:
   actions:
     - theme: brand
       text: 🚀 开启探索之旅
-      link: /codeWorld/
+      link: /code/
     - theme: alt
       text: 📚 访问 GitHub
       link: https://github.com/luojing1336
