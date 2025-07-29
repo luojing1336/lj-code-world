@@ -1,1 +1,9 @@
-["index"]
+[
+  {
+    "type": "dir",
+    "name": "Web",
+    "label": "Web前端开发",
+    "collapsible": true,
+    "collapsed": false
+  }
+]
