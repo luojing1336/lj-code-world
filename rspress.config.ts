@@ -3,18 +3,19 @@ import { defineConfig } from 'rspress/config';
 
 export default defineConfig({
   root: path.join(__dirname, 'docs'),
-  title: 'My Site',
-  icon: '/rspress-icon.png',
+  title: 'LJ Code World',
+  icon: '/icon-lj-light-logo-512.png',
   logo: {
-    light: '/rspress-light-logo.png',
-    dark: '/rspress-dark-logo.png',
+    light: '/icon-lj-light-logo-512.png',
+    dark: '/icon-lj-dark-logo-512.png',
   },
+  logoText: 'LJ Code World',
   themeConfig: {
     socialLinks: [
       {
         icon: 'github',
         mode: 'link',
-        content: 'https://github.com/web-infra-dev/rspress',
+        content: 'https://github.com/luojing1336',
       },
     ],
   },

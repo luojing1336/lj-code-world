@@ -1,16 +1,32 @@
 [
   {
-    "text": "Guide",
-    "link": "/guide/",
-    "activeMatch": "/guide/"
+    "text": "代码世界",
+    "link": "/code/",
+    "activeMatch": "/code/"
   },
   {
-    "text": "Hello world",
-    "link": "/hello/",
-    "activeMatch": "/hello/"
+    "text": "金融知识",
+    "link": "/finance/",
+    "activeMatch": "/finance/"
   },
   {
-    "text": "API",
-    "link": "https://rspress.dev/api/index.html"
+    "text": "娱乐天地",
+    "link": "/entertainment/",
+    "activeMatch": "/entertainment/"
+  },
+  {
+    "text": "思维漫步",
+    "link": "/thinking/",
+    "activeMatch": "/thinking/"
+  },
+  {
+    "text": "实用工具",
+    "link": "/tools/",
+    "activeMatch": "/tools/"
+  },
+  {
+    "text": "杂物乱谈",
+    "link": "/others/",
+    "activeMatch": "/others/"
   }
 ]
