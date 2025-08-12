@@ -5,5 +5,26 @@
     "label": "Web前端开发",
     "collapsible": true,
     "collapsed": false
+  },
+  {
+    "type": "dir",
+    "name": "Java",
+    "label": "Java后端开发",
+    "collapsible": true,
+    "collapsed": true
+  },
+  {
+    "type": "dir",
+    "name": "App",
+    "label": "App开发",
+    "collapsible": true,
+    "collapsed": true
+  },
+  {
+    "type": "dir",
+    "name": "Algorithm",
+    "label": "算法学习",
+    "collapsible": true,
+    "collapsed": true
   }
 ]
