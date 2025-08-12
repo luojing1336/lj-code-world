@@ -8,7 +8,6 @@
     "preview": "rspress preview"
   },
   "dependencies": {
-    "antd": "^5.27.0",
     "dayjs": "^1.11.13",
     "rspress": "^1.45.0"
   },
