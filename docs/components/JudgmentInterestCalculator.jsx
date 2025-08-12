@@ -231,7 +231,6 @@ const JudgmentInterestCalculator = () => {
 
       <style>{`
         .container {
-          max-width: 480px;
           margin: 40px auto;
           padding: 16px;
           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
