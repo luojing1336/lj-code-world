@@ -13,7 +13,7 @@ hero:
       text: 📚 访问 GitHub
       link: https://github.com/luojing1336
   image:
-    src: /icon-lj-light-logo-512.png
+    src: /icon-512-light.png
     alt: LJ Code World Logo
     
 features:
