@@ -1,197 +1,53 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from "react";
+import {
+  ZoomInOutlined,
+  ZoomOutOutlined,
+  RotateRightOutlined,
+  RotateLeftOutlined,
+  LeftOutlined,
+  RightOutlined,
+  FullscreenOutlined,
+  FullscreenExitOutlined,
+  FileOutlined,
+  MenuFoldOutlined,
+} from "@ant-design/icons";
+import {
+  Button,
+  Input,
+  InputNumber,
+  Space,
+  Tooltip,
+  Spin,
+  Progress,
+} from "antd";
+import "./PDFViewer.css";
 
-const PDFViewer = ({ 
-  src, 
-  width = '100%', 
-  height = '100%',
+const PDFViewer = ({
+  src,
+  width = "100%",
+  height = "100%",
   showControls = true,
   initialPage = 1,
   scale = 1.0,
-  className = ''
+  className = "",
 }) => {
   const canvasRef = useRef(null);
   const containerRef = useRef(null);
+  const viewerRef = useRef(null);
   const [pdf, setPdf] = useState(null);
   const [currentPage, setCurrentPage] = useState(initialPage);
   const [numPages, setNumPages] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentScale, setCurrentScale] = useState(scale);
+  const [rotation, setRotation] = useState(0);
   const [pdfjsLib, setPdfjsLib] = useState(null);
-  const [viewMode, setViewMode] = useState('single'); // 'single' | 'continuous'
-  const [inputPage, setInputPage] = useState('');
-  const [allPages, setAllPages] = useState([]); // 连续模式下存储所有页面
-
-  // 样式定义
-  const styles = {
-    container: {
-      width,
-      fontFamily: 'system-ui, -apple-system, sans-serif'
-    },
-    loadingContainer: {
-      width,
-      height,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      border: '1px solid #e1e5e9',
-      borderRadius: '12px',
-      backgroundColor: '#f8f9fa'
-    },
-    loadingContent: {
-      textAlign: 'center',
-      color: '#495057'
-    },
-    spinner: {
-      width: '40px',
-      height: '40px',
-      border: '3px solid #f3f3f3',
-      borderTop: '3px solid #0066cc',
-      borderRadius: '50%',
-      animation: 'spin 1s linear infinite',
-      margin: '0 auto 16px'
-    },
-    errorContainer: {
-      width,
-      height,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      border: '1px solid #dc3545',
-      borderRadius: '12px',
-      backgroundColor: '#f8d7da',
-      color: '#721c24'
-    },
-    errorContent: {
-      textAlign: 'center'
-    },
-    retryButton: {
-      marginTop: '12px',
-      padding: '8px 16px',
-      backgroundColor: '#0066cc',
-      color: 'white',
-      border: 'none',
-      borderRadius: '6px',
-      cursor: 'pointer',
-      fontSize: '14px',
-      transition: 'background-color 0.2s'
-    },
-    controlsBar: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      padding: '12px 16px',
-      backgroundColor: '#ffffff',
-      border: '1px solid #e1e5e9',
-      borderBottom: 'none',
-      borderRadius: '12px 12px 0 0',
-      boxShadow: '0 2px 4px rgba(0,0,0,0.05)',
-      flexWrap: 'wrap',
-      gap: '12px'
-    },
-    controlGroup: {
-      display: 'flex',
-      alignItems: 'center',
-      gap: '8px'
-    },
-    pageNavGroup: {
-      display: 'flex',
-      alignItems: 'center',
-      gap: '12px'
-    },
-    button: {
-      padding: '8px 12px',
-      border: 'none',
-      borderRadius: '6px',
-      cursor: 'pointer',
-      fontSize: '14px',
-      fontWeight: '500',
-      transition: 'all 0.2s',
-      outline: 'none'
-    },
-    primaryButton: {
-      backgroundColor: '#0066cc',
-      color: 'white'
-    },
-    primaryButtonDisabled: {
-      backgroundColor: '#e9ecef',
-      color: '#6c757d',
-      cursor: 'not-allowed'
-    },
-    secondaryButton: {
-      backgroundColor: '#6c757d',
-      color: 'white'
-    },
-    successButton: {
-      backgroundColor: '#28a745',
-      color: 'white'
-    },
-    pageInfo: {
-      fontSize: '14px',
-      color: '#495057',
-      whiteSpace: 'nowrap',
-      fontWeight: '500'
-    },
-    pageInput: {
-      width: '60px',
-      padding: '4px 8px',
-      border: '1px solid #ced4da',
-      borderRadius: '4px',
-      fontSize: '14px',
-      textAlign: 'center'
-    },
-    zoomInfo: {
-      fontSize: '14px',
-      minWidth: '50px',
-      textAlign: 'center',
-      fontWeight: '500',
-      color: '#495057'
-    },
-    modeToggle: {
-      padding: '6px 12px',
-      border: '1px solid #0066cc',
-      borderRadius: '6px',
-      backgroundColor: 'transparent',
-      color: '#0066cc',
-      cursor: 'pointer',
-      fontSize: '12px',
-      fontWeight: '500',
-      transition: 'all 0.2s'
-    },
-    modeToggleActive: {
-      backgroundColor: '#0066cc',
-      color: 'white'
-    },
-    viewerContainer: {
-      width: '100%',
-      height,
-      overflow: 'auto',
-      border: '1px solid #e1e5e9',
-      borderRadius: showControls ? '0 0 12px 12px' : '12px',
-      backgroundColor: '#f8f9fa'
-    },
-    singlePageContainer: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'flex-start',
-      padding: '24px',
-      minHeight: '100%'
-    },
-    continuousContainer: {
-      padding: '24px',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      gap: '24px'
-    },
-    canvas: {
-      maxWidth: '100%',
-      height: 'auto',
-      boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
-      backgroundColor: 'white',
-      borderRadius: '4px'
-    }
-  };
+  const [viewMode, setViewMode] = useState("continuous");
+  const [inputPage, setInputPage] = useState("");
+  const [allPages, setAllPages] = useState([]);
+  const [fullscreen, setFullscreen] = useState(false);
+  const [isEditingZoom, setIsEditingZoom] = useState(false);
+  const [zoomInputValue, setZoomInputValue] = useState("");
 
   // 动态加载 PDF.js
   useEffect(() => {
@@ -199,21 +55,22 @@ const PDFViewer = ({
       try {
         if (!window.pdfjsLib) {
           await new Promise((resolve, reject) => {
-            const script = document.createElement('script');
-            script.src = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
+            const script = document.createElement("script");
+            script.src =
+              "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js";
             script.onload = resolve;
             script.onerror = reject;
             document.head.appendChild(script);
           });
-          
-          window.pdfjsLib.GlobalWorkerOptions.workerSrc = 
-            'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+          window.pdfjsLib.GlobalWorkerOptions.workerSrc =
+            "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
         }
-        
+
         setPdfjsLib(window.pdfjsLib);
       } catch (err) {
-        setError('加载 PDF.js 库失败');
-        console.error('PDF.js loading error:', err);
+        setError("加载 PDF.js 库失败");
+        console.error("PDF.js loading error:", err);
       }
     };
 
@@ -228,20 +85,20 @@ const PDFViewer = ({
 
   useEffect(() => {
     if (pdf) {
-      if (viewMode === 'single') {
+      if (viewMode === "single") {
         renderPage(currentPage);
       } else {
         renderAllPages();
       }
     }
-  }, [pdf, currentPage, currentScale, viewMode]);
+  }, [pdf, currentPage, currentScale, viewMode, rotation]);
 
   const loadPDF = async () => {
     if (!pdfjsLib) return;
-    
+
     setLoading(true);
     setError(null);
-    
+
     try {
       const loadingTask = pdfjsLib.getDocument(src);
       const pdfDoc = await loadingTask.promise;
@@ -250,7 +107,7 @@ const PDFViewer = ({
       setCurrentPage(Math.min(initialPage, pdfDoc.numPages));
     } catch (err) {
       setError(`加载 PDF 失败: ${err.message}`);
-      console.error('PDF loading error:', err);
+      console.error("PDF loading error:", err);
     } finally {
       setLoading(false);
     }
@@ -262,21 +119,22 @@ const PDFViewer = ({
     try {
       const page = await pdf.getPage(pageNum);
       const canvas = canvasRef.current;
-      const context = canvas.getContext('2d');
-      
-      const viewport = page.getViewport({ scale: currentScale });
+      const context = canvas.getContext("2d");
+
+      const viewport = page.getViewport({
+        scale: currentScale,
+        rotation: rotation,
+      });
       canvas.height = viewport.height;
       canvas.width = viewport.width;
 
-      const renderContext = {
+      await page.render({
         canvasContext: context,
         viewport: viewport,
-      };
-
-      await page.render(renderContext).promise;
+      }).promise;
     } catch (err) {
       setError(`渲染页面失败: ${err.message}`);
-      console.error('Page rendering error:', err);
+      console.error("Page rendering error:", err);
     }
   };
 
@@ -287,251 +145,353 @@ const PDFViewer = ({
       const pages = [];
       for (let i = 1; i <= numPages; i++) {
         const page = await pdf.getPage(i);
-        const canvas = document.createElement('canvas');
-        const context = canvas.getContext('2d');
-        
-        const viewport = page.getViewport({ scale: currentScale });
+        const canvas = document.createElement("canvas");
+        const context = canvas.getContext("2d");
+
+        const viewport = page.getViewport({
+          scale: currentScale,
+          rotation: rotation,
+        });
         canvas.height = viewport.height;
         canvas.width = viewport.width;
-        canvas.style.cssText = `
-          max-width: 100%;
-          height: auto;
-          box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-          background-color: white;
-          border-radius: 4px;
-          margin-bottom: 24px;
-        `;
 
-        const renderContext = {
+        await page.render({
           canvasContext: context,
           viewport: viewport,
-        };
-
-        await page.render(renderContext).promise;
+        }).promise;
         pages.push(canvas);
       }
       setAllPages(pages);
     } catch (err) {
       setError(`渲染页面失败: ${err.message}`);
-      console.error('Pages rendering error:', err);
+      console.error("Pages rendering error:", err);
     }
   };
 
+  // 控制功能
   const goToPrevPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
+    if (currentPage > 1) setCurrentPage(currentPage - 1);
   };
 
   const goToNextPage = () => {
-    if (currentPage < numPages) {
-      setCurrentPage(currentPage + 1);
-    }
+    if (currentPage < numPages) setCurrentPage(currentPage + 1);
   };
 
-  const goToPage = () => {
-    const pageNumber = parseInt(inputPage);
+  const goToPage = (pageNumber) => {
     if (pageNumber >= 1 && pageNumber <= numPages) {
       setCurrentPage(pageNumber);
-      setInputPage('');
+      setInputPage("");
     }
   };
 
-  const handlePageInputKeyPress = (e) => {
-    if (e.key === 'Enter') {
-      goToPage();
+  const handlePageChange = (e) => {
+    setInputPage(e.target.value);
+  };
+
+  const handlePageSubmit = (e) => {
+    if (e.type === "blur" || e.key === "Enter") {
+      e.preventDefault();
+      const pageNumber = parseInt(inputPage);
+      if (!isNaN(pageNumber)) {
+        goToPage(pageNumber);
+      }
     }
   };
 
-  const zoomIn = () => {
-    setCurrentScale(prev => Math.min(prev * 1.2, 3.0));
+  const zoomIn = () => setCurrentScale((prev) => Math.min(prev * 1.2, 3.0));
+  const zoomOut = () => setCurrentScale((prev) => Math.max(prev / 1.2, 0.3));
+  const resetZoom = () => setCurrentScale(scale);
+
+  const handleZoomChange = (e) => {
+    setZoomInputValue(e.target.value);
   };
 
-  const zoomOut = () => {
-    setCurrentScale(prev => Math.max(prev / 1.2, 0.3));
-  };
+  const handleZoomSubmit = (e) => {
+    if (e.type === "blur" || e.key === "Enter") {
+      e.preventDefault();
+      let value = zoomInputValue;
 
-  const resetZoom = () => {
-    setCurrentScale(scale);
-  };
-
-  const toggleViewMode = () => {
-    setViewMode(prev => prev === 'single' ? 'continuous' : 'single');
-  };
-
-  if (!pdfjsLib || loading) {
-    return (
-      <div className={`pdf-viewer-container ${className}`} style={styles.loadingContainer}>
-        <div style={styles.loadingContent}>
-          <div style={styles.spinner}></div>
-          <p>{!pdfjsLib ? '加载 PDF 库中...' : '加载 PDF 中...'}</p>
-        </div>
-        <style jsx>{`
-          @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+      if (value.includes("%")) {
+        value = value.replace("%", "");
+        const percentValue = parseFloat(value);
+        if (!isNaN(percentValue)) {
+          setCurrentScale(Math.min(Math.max(percentValue / 100, 0.3), 3.0));
+        }
+      } else {
+        const decimalValue = parseFloat(value);
+        if (!isNaN(decimalValue)) {
+          if (decimalValue > 10) {
+            setCurrentScale(Math.min(Math.max(decimalValue / 100, 0.3), 3.0));
+          } else {
+            setCurrentScale(Math.min(Math.max(decimalValue, 0.3), 3.0));
           }
-        `}</style>
+        }
+      }
+
+      setIsEditingZoom(false);
+    }
+  };
+
+  const startEditingZoom = () => {
+    setZoomInputValue(Math.round(currentScale * 100).toString());
+    setIsEditingZoom(true);
+  };
+
+  const toggleViewMode = () =>
+    setViewMode((prev) => (prev === "single" ? "continuous" : "single"));
+
+  const rotateClockwise = () => setRotation((r) => (r + 90) % 360);
+  const rotateCounterClockwise = () => setRotation((r) => (r - 90 + 360) % 360);
+
+  const toggleFullscreen = () => {
+    const viewerElement = viewerRef.current;
+    if (!viewerElement) return;
+
+    if (!document.fullscreenElement) {
+      viewerElement
+        .requestFullscreen()
+        .then(() => {
+          setFullscreen(true);
+        })
+        .catch((err) => {
+          console.error(
+            `Error attempting to enable fullscreen: ${err.message}`
+          );
+        });
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen().then(() => {
+          setFullscreen(false);
+        });
+      }
+    }
+  };
+
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      if (!document.fullscreenElement) {
+        setFullscreen(false);
+      }
+    };
+
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+    document.addEventListener("webkitfullscreenchange", handleFullscreenChange);
+    document.addEventListener("mozfullscreenchange", handleFullscreenChange);
+    document.addEventListener("MSFullscreenChange", handleFullscreenChange);
+
+    return () => {
+      document.removeEventListener("fullscreenchange", handleFullscreenChange);
+      document.removeEventListener(
+        "webkitfullscreenchange",
+        handleFullscreenChange
+      );
+      document.removeEventListener(
+        "mozfullscreenchange",
+        handleFullscreenChange
+      );
+      document.removeEventListener(
+        "MSFullscreenChange",
+        handleFullscreenChange
+      );
+    };
+  }, []);
+
+  if (loading) {
+    return (
+      <div className={`pdf-viewer-pro ${className}`} style={{ width, height }}>
+        <div className="pdf-loading">
+          <Spin size="large" />
+          <div style={{ marginTop: 16, fontSize: 16 }}>正在加载 PDF...</div>
+        </div>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className={`pdf-viewer-container ${className}`} style={styles.errorContainer}>
-        <div style={styles.errorContent}>
-          <p>⚠️ {error}</p>
-          <button 
-            onClick={loadPDF}
-            style={styles.retryButton}
-            onMouseOver={(e) => e.target.style.backgroundColor = '#0052a3'}
-            onMouseOut={(e) => e.target.style.backgroundColor = '#0066cc'}
-          >
-            重试
-          </button>
-        </div>
+      <div className={`pdf-viewer-pro ${className}`} style={{ width, height }}>
+        <div className="pdf-error">{error}</div>
       </div>
     );
   }
 
   return (
-    <div className={`pdf-viewer-container ${className}`} style={styles.container}>
+    <div
+      ref={viewerRef}
+      className={`pdf-viewer-pro ${className}`}
+      style={{ width, height: "100%" }}
+    >
       {showControls && (
-        <div style={styles.controlsBar}>
-          <div style={styles.pageNavGroup}>
-            <button
-              onClick={goToPrevPage}
-              disabled={currentPage <= 1 || viewMode === 'continuous'}
-              style={{
-                ...styles.button,
-                ...(currentPage <= 1 || viewMode === 'continuous' ? styles.primaryButtonDisabled : styles.primaryButton)
-              }}
-            >
-              ← 上一页
-            </button>
-            
-            <div style={styles.controlGroup}>
-              <input
-                type="number"
-                min="1"
-                max={numPages}
-                value={inputPage}
-                onChange={(e) => setInputPage(e.target.value)}
-                onKeyPress={handlePageInputKeyPress}
-                placeholder={currentPage.toString()}
-                style={styles.pageInput}
-                disabled={viewMode === 'continuous'}
-              />
-              <button
-                onClick={goToPage}
-                disabled={!inputPage || viewMode === 'continuous'}
-                style={{
-                  ...styles.button,
-                  ...(!inputPage || viewMode === 'continuous' ? styles.primaryButtonDisabled : styles.primaryButton)
-                }}
-              >
-                跳转
-              </button>
-            </div>
+        <div className="pdf-toolbar">
+          <Space size="middle" className="toolbar-group">
+            <Space size="small">
+              <Tooltip title="上一页">
+                <Button
+                  icon={<LeftOutlined />}
+                  onClick={goToPrevPage}
+                  disabled={viewMode === "continuous" || currentPage <= 1}
+                  size="middle"
+                  className="toolbar-button"
+                />
+              </Tooltip>
 
-            <span style={styles.pageInfo}>
-              {viewMode === 'single' ? `第 ${currentPage} 页 / ` : ''}共 {numPages} 页
-            </span>
+              <div className="page-control">
+                <InputNumber
+                  min={1}
+                  max={numPages}
+                  value={inputPage || undefined}
+                  onChange={(value) => setInputPage(value?.toString() || "")}
+                  onPressEnter={handlePageSubmit}
+                  onBlur={handlePageSubmit}
+                  placeholder={currentPage.toString()}
+                  className="page-input"
+                  controls={false}
+                  size="middle"
+                  disabled={viewMode === "continuous"}
+                />
+                <span className="page-divider">/ {numPages}</span>
+              </div>
 
-            <button
-              onClick={goToNextPage}
-              disabled={currentPage >= numPages || viewMode === 'continuous'}
-              style={{
-                ...styles.button,
-                ...(currentPage >= numPages || viewMode === 'continuous' ? styles.primaryButtonDisabled : styles.primaryButton)
-              }}
-            >
-              下一页 →
-            </button>
-          </div>
-          
-          <div style={styles.controlGroup}>
-            <button
-              onClick={toggleViewMode}
-              style={{
-                ...styles.modeToggle,
-                ...(viewMode === 'continuous' ? styles.modeToggleActive : {})
-              }}
-            >
-              {viewMode === 'single' ? '连续模式' : '单页模式'}
-            </button>
+              <Tooltip title="下一页">
+                <Button
+                  icon={<RightOutlined />}
+                  onClick={goToNextPage}
+                  disabled={
+                    viewMode === "continuous" || currentPage >= numPages
+                  }
+                  size="middle"
+                  className="toolbar-button"
+                />
+              </Tooltip>
+            </Space>
 
-            <div style={styles.controlGroup}>
-              <button
-                onClick={zoomOut}
-                style={{...styles.button, ...styles.secondaryButton}}
+            <Space size="small">
+              <Tooltip
+                title={
+                  viewMode === "single" ? "切换到连续模式" : "切换到单页模式"
+                }
               >
-                −
-              </button>
-              <span style={styles.zoomInfo}>
-                {Math.round(currentScale * 100)}%
-              </span>
-              <button
-                onClick={zoomIn}
-                style={{...styles.button, ...styles.secondaryButton}}
-              >
-                +
-              </button>
-              <button
-                onClick={resetZoom}
-                style={{...styles.button, ...styles.successButton}}
-              >
-                重置
-              </button>
-            </div>
-          </div>
+                <Button
+                  icon={
+                    viewMode === "single" ? (
+                      <MenuFoldOutlined />
+                    ) : (
+                      <FileOutlined />
+                    )
+                  }
+                  onClick={toggleViewMode}
+                  size="middle"
+                  className="toolbar-button view-mode-button"
+                >
+                  {viewMode === "single" ? "连续" : "单页"}
+                </Button>
+              </Tooltip>
+            </Space>
+          </Space>
+
+          <Space size="middle" className="toolbar-group">
+            <Space size="small">
+              <Tooltip title="缩小">
+                <Button
+                  icon={<ZoomOutOutlined />}
+                  onClick={zoomOut}
+                  size="middle"
+                  className="toolbar-button"
+                />
+              </Tooltip>
+
+              {isEditingZoom ? (
+                <Input
+                  value={zoomInputValue}
+                  onChange={handleZoomChange}
+                  onBlur={handleZoomSubmit}
+                  onPressEnter={handleZoomSubmit}
+                  autoFocus
+                  className="zoom-input"
+                  size="middle"
+                  suffix="%"
+                />
+              ) : (
+                <Button
+                  onClick={startEditingZoom}
+                  className="zoom-display toolbar-button"
+                  size="middle"
+                >
+                  {Math.round(currentScale * 100)}%
+                </Button>
+              )}
+
+              <Tooltip title="放大">
+                <Button
+                  icon={<ZoomInOutlined />}
+                  onClick={zoomIn}
+                  size="middle"
+                  className="toolbar-button"
+                />
+              </Tooltip>
+            </Space>
+
+            <Space size="small">
+              <Tooltip title="逆时针旋转">
+                <Button
+                  icon={<RotateLeftOutlined />}
+                  onClick={rotateCounterClockwise}
+                  size="middle"
+                  className="toolbar-button"
+                />
+              </Tooltip>
+
+              <Tooltip title="顺时针旋转">
+                <Button
+                  icon={<RotateRightOutlined />}
+                  onClick={rotateClockwise}
+                  size="middle"
+                  className="toolbar-button"
+                />
+              </Tooltip>
+
+              <Tooltip title={fullscreen ? "退出全屏" : "全屏"}>
+                <Button
+                  icon={
+                    fullscreen ? (
+                      <FullscreenExitOutlined />
+                    ) : (
+                      <FullscreenOutlined />
+                    )
+                  }
+                  onClick={toggleFullscreen}
+                  size="middle"
+                  className="toolbar-button"
+                />
+              </Tooltip>
+            </Space>
+          </Space>
         </div>
       )}
-      
-      <div style={styles.viewerContainer}>
-        {viewMode === 'single' ? (
-          <div style={styles.singlePageContainer}>
-            <canvas ref={canvasRef} style={styles.canvas} />
-          </div>
+
+      <div className="pdf-content">
+        {viewMode === "single" ? (
+          <canvas ref={canvasRef} className="pdf-canvas" />
         ) : (
-          <div 
-            ref={containerRef} 
-            style={styles.continuousContainer}
-          >
+          <div ref={containerRef} className="pdf-pages-container">
             {allPages.map((canvas, index) => {
               const canvasClone = canvas.cloneNode(true);
-              const context = canvasClone.getContext('2d');
+              const context = canvasClone.getContext("2d");
               context.drawImage(canvas, 0, 0);
-              
+
               return (
-                <div key={index} style={{ position: 'relative' }}>
-                  <div 
-                    style={{
-                      position: 'absolute',
-                      top: '-10px',
-                      left: '10px',
-                      backgroundColor: '#0066cc',
-                      color: 'white',
-                      padding: '4px 8px',
-                      borderRadius: '4px',
-                      fontSize: '12px',
-                      fontWeight: '500',
-                      zIndex: 1
-                    }}
-                  >
-                    第 {index + 1} 页
-                  </div>
+                <div key={index} className="pdf-page-wrapper">
                   <canvas
                     ref={(el) => {
                       if (el && canvasClone) {
                         el.width = canvasClone.width;
                         el.height = canvasClone.height;
-                        const ctx = el.getContext('2d');
-                        ctx.drawImage(canvasClone, 0, 0);
+                        el.getContext("2d").drawImage(canvasClone, 0, 0);
                       }
                     }}
-                    style={styles.canvas}
+                    className="pdf-page-canvas"
                   />
+                  <div className="pdf-page-number">第 {index + 1} 页</div>
                 </div>
               );
             })}
