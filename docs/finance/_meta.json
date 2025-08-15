@@ -1,1 +1,16 @@
-["index", "零基础入门互联网基金销售"]
+[
+  {
+    "type": "dir",
+    "name": "mutualFund",
+    "label": "公募基金",
+    "collapsible": true,
+    "collapsed": false
+  },
+  {
+    "type": "dir",
+    "name": "privateEquityFund",
+    "label": "私募基金",
+    "collapsible": true,
+    "collapsed": true
+  }
+]

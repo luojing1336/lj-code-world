@@ -1,0 +1,134 @@
+.pdf-viewer-pro {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #d9d9d9;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.pdf-toolbar {
+  padding: 12px 16px;
+  background: #f5f5f5;
+  border-bottom: 1px solid #e0e0e0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.toolbar-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.toolbar-button {
+  min-width: 36px;
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.view-mode-button .anticon {
+  margin-right: 4px;
+}
+
+.pdf-toolbar .ant-space {
+  display: flex;
+  align-items: center;
+}
+
+.page-input {
+  width: 60px;
+  text-align: center;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.page-divider {
+  margin: 0 8px;
+  color: #555;
+}
+
+.zoom-input,
+.zoom-display {
+  width: 80px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.zoom-display {
+  cursor: pointer;
+}
+
+.pdf-content {
+  flex: 1;
+  overflow: auto;
+  background: #f8f9fa;
+  padding: 16px;
+}
+
+.pdf-canvas {
+  display: block;
+  margin: 0 auto;
+}
+
+.pdf-pages-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+}
+
+.pdf-page-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pdf-page-number {
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  margin-top: 8px;
+  font-weight: 500;
+}
+
+.pdf-page-canvas {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+.pdf-loading,
+.pdf-error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-size: 14px;
+}
+
+.pdf-error {
+  color: #ff4d4f;
+}
+
+@media (max-width: 768px) {
+  .pdf-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .toolbar-group {
+    justify-content: space-between;
+  }
+}
