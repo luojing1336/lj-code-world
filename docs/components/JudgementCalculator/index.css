@@ -1,0 +1,611 @@
+/* 判决利息计算器样式文件 - JudgmentCalculator.css */
+
+/* ===== 主容器样式 ===== */
+.judgment-calculator {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.calculator-card {
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  background: #ffffff;
+}
+
+/* ===== 头部区域 ===== */
+.header {
+  text-align: center;
+  margin-bottom: 32px;
+  padding: 20px 0;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  margin: -24px -24px 32px -24px;
+}
+
+.title {
+  margin-bottom: 8px !important;
+  color: #1890ff;
+  font-weight: 700;
+  font-size: 28px;
+}
+
+.title-icon {
+  margin-right: 8px;
+  color: #52c41a;
+  font-size: 24px;
+}
+
+.subtitle {
+  color: #666;
+  font-size: 16px;
+  margin-bottom: 0 !important;
+  line-height: 1.6;
+}
+
+/* ===== 表单区域 ===== */
+.calculator-form {
+  margin-bottom: 24px;
+}
+
+.form-item {
+  margin-bottom: 16px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #333;
+  font-size: 14px;
+}
+
+.checkbox-item {
+  font-size: 16px;
+  margin: 16px 0;
+  color: #333;
+}
+
+.checkbox-item .ant-checkbox + span {
+  font-size: 16px;
+}
+
+/* ===== 按钮样式 ===== */
+.calculate-button {
+  height: 48px;
+  font-size: 16px;
+  font-weight: 600;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  border: none !important;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  margin-top: 16px;
+}
+
+.calculate-button:hover {
+  background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
+}
+
+.calculate-button:focus {
+  background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%) !important;
+  box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
+}
+
+.calculate-button:active {
+  transform: translateY(0);
+}
+
+/* ===== 错误提示 ===== */
+.error-alert {
+  margin: 16px 0;
+  border-radius: 8px;
+}
+
+/* ===== 结果展示区域 ===== */
+.result-card {
+  margin: 24px 0;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #e8f5e8 0%, #f0f8ff 100%);
+  border: 1px solid #52c41a;
+}
+
+.result-card .ant-card-head {
+  background: rgba(82, 196, 26, 0.1);
+  border-bottom: 1px solid rgba(82, 196, 26, 0.3);
+  border-radius: 12px 12px 0 0;
+}
+
+.result-card .ant-card-head-title {
+  color: #52c41a;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.result-card .ant-card-body {
+  padding: 20px;
+}
+
+.interest-amount {
+  font-size: 18px;
+  color: #52c41a;
+  font-weight: bold;
+}
+
+.timestamp {
+  display: block;
+  text-align: right;
+  margin-top: 12px;
+  font-style: italic;
+  font-size: 12px;
+}
+
+/* ===== 使用说明区域 ===== */
+.instructions-card {
+  margin-top: 24px;
+  background: #fafafa;
+  border-radius: 12px;
+}
+
+.instructions-card .ant-card-head {
+  background: rgba(24, 144, 255, 0.05);
+  border-bottom: 1px solid #d9d9d9;
+  border-radius: 12px 12px 0 0;
+}
+
+.instructions-card .ant-card-head-title {
+  color: #1890ff;
+  font-weight: 600;
+}
+
+.info-icon {
+  color: #1890ff;
+  margin-right: 8px;
+}
+
+.instructions-list {
+  margin: 0;
+  padding-left: 20px;
+  color: #666;
+}
+
+.instructions-list li {
+  margin-bottom: 8px;
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+/* ===== Ant Design 组件自定义样式 ===== */
+
+/* 输入框样式 */
+.ant-input-number {
+  border-radius: 6px;
+  border: 1.5px solid #d9d9d9;
+  transition: all 0.3s ease;
+}
+
+.ant-input-number:hover {
+  border-color: #40a9ff;
+}
+
+.ant-input-number-focused {
+  border-color: #1890ff;
+  box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+}
+
+.ant-input-number-large {
+  font-size: 16px;
+  height: 40px;
+}
+
+/* 日期选择器样式 */
+.ant-picker {
+  border-radius: 6px;
+  border: 1.5px solid #d9d9d9;
+  transition: all 0.3s ease;
+}
+
+.ant-picker:hover {
+  border-color: #40a9ff;
+}
+
+.ant-picker-focused {
+  border-color: #1890ff;
+  box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+}
+
+.ant-picker-large {
+  font-size: 16px;
+  height: 40px;
+}
+
+/* 复选框样式 */
+.ant-checkbox-wrapper {
+  font-size: 16px;
+}
+
+.ant-checkbox-wrapper:hover .ant-checkbox-inner {
+  border-color: #1890ff;
+}
+
+.ant-checkbox-checked .ant-checkbox-inner {
+  background-color: #1890ff;
+  border-color: #1890ff;
+}
+
+.ant-checkbox-inner {
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+/* 描述列表样式 */
+.ant-descriptions-bordered .ant-descriptions-item-label {
+  background-color: rgba(24, 144, 255, 0.05);
+  font-weight: 600;
+  color: #333;
+  border-right: 1px solid #f0f0f0;
+}
+
+.ant-descriptions-bordered .ant-descriptions-item-content {
+  background-color: #fff;
+  padding: 12px 16px;
+}
+
+.ant-descriptions-small .ant-descriptions-item-label,
+.ant-descriptions-small .ant-descriptions-item-content {
+  padding: 8px 12px;
+}
+
+/* 卡片样式 */
+.ant-card-head {
+  border-bottom: 1px solid #f0f0f0;
+  min-height: 48px;
+  padding: 0 20px;
+}
+
+.ant-card-body {
+  padding: 20px;
+}
+
+.ant-card-type-inner .ant-card-head {
+  padding: 0 16px;
+}
+
+.ant-card-type-inner .ant-card-body {
+  padding: 16px;
+}
+
+/* Typography 样式 */
+.ant-typography {
+  margin-bottom: 0;
+}
+
+.ant-typography code {
+  background: rgba(24, 144, 255, 0.1);
+  border: 1px solid rgba(24, 144, 255, 0.2);
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 12px;
+}
+
+/* ===== 响应式设计 ===== */
+
+/* 平板设备 */
+@media (max-width: 768px) {
+  .judgment-calculator {
+    margin: 16px;
+    padding: 12px;
+  }
+  
+  .header {
+    margin: -16px -16px 24px -16px;
+    padding: 16px;
+  }
+  
+  .title {
+    font-size: 24px !important;
+  }
+  
+  .title-icon {
+    font-size: 20px;
+  }
+  
+  .subtitle {
+    font-size: 14px;
+  }
+  
+  .form-label {
+    font-size: 13px;
+  }
+
+  .calculator-form .ant-col {
+    margin-bottom: 8px;
+  }
+
+  .ant-input-number-large,
+  .ant-picker-large {
+    font-size: 15px;
+    height: 38px;
+  }
+}
+
+/* 手机设备 */
+@media (max-width: 576px) {
+  .judgment-calculator {
+    margin: 8px;
+    padding: 8px;
+  }
+  
+  .calculator-card {
+    border-radius: 12px;
+  }
+  
+  .calculator-card .ant-card-body {
+    padding: 16px;
+  }
+  
+  .header {
+    margin: -16px -16px 20px -16px;
+    padding: 12px;
+  }
+  
+  .title {
+    font-size: 20px !important;
+  }
+  
+  .title-icon {
+    font-size: 18px;
+  }
+  
+  .subtitle {
+    font-size: 13px;
+  }
+  
+  .calculate-button {
+    height: 44px;
+    font-size: 15px;
+  }
+
+  .form-label {
+    font-size: 12px;
+  }
+
+  .checkbox-item {
+    font-size: 14px;
+  }
+
+  .checkbox-item .ant-checkbox + span {
+    font-size: 14px;
+  }
+
+  .instructions-list li {
+    font-size: 13px;
+  }
+
+  .ant-input-number-large,
+  .ant-picker-large {
+    font-size: 14px;
+    height: 36px;
+  }
+
+  .ant-descriptions-small .ant-descriptions-item-label,
+  .ant-descriptions-small .ant-descriptions-item-content {
+    padding: 6px 8px;
+    font-size: 13px;
+  }
+}
+
+/* 小屏手机设备 */
+@media (max-width: 480px) {
+  .judgment-calculator {
+    margin: 4px;
+    padding: 4px;
+  }
+
+  .calculator-card .ant-card-body {
+    padding: 12px;
+  }
+
+  .header {
+    margin: -12px -12px 16px -12px;
+    padding: 8px;
+  }
+
+  .title {
+    font-size: 18px !important;
+  }
+
+  .title-icon {
+    font-size: 16px;
+  }
+
+  .subtitle {
+    font-size: 12px;
+  }
+
+  .calculate-button {
+    height: 40px;
+    font-size: 14px;
+  }
+
+  .ant-input-number,
+  .ant-picker {
+    font-size: 14px;
+  }
+
+  .result-card,
+  .instructions-card {
+    margin: 16px 0;
+  }
+
+  .interest-amount {
+    font-size: 16px;
+  }
+}
+
+/* ===== 深色模式支持 ===== */
+@media (prefers-color-scheme: dark) {
+  .judgment-calculator {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  }
+
+  .calculator-card {
+    background: #1f1f1f;
+    color: #fff;
+  }
+
+  .header {
+    background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+  }
+
+  .title {
+    color: #74b9ff;
+  }
+
+  .subtitle {
+    color: #b2bec3;
+  }
+
+  .form-label {
+    color: #ddd;
+  }
+
+  .checkbox-item {
+    color: #ddd;
+  }
+
+  .instructions-card {
+    background: #2d3748;
+  }
+
+  .instructions-card .ant-card-head {
+    background: rgba(116, 185, 255, 0.1);
+  }
+
+  .instructions-list li {
+    color: #b2bec3;
+  }
+
+  .ant-input-number,
+  .ant-picker {
+    background: #2d3748;
+    border-color: #4a5568;
+    color: #fff;
+  }
+
+  .ant-descriptions-bordered .ant-descriptions-item-label {
+    background-color: #2d3748;
+    color: #ddd;
+    border-right-color: #4a5568;
+  }
+
+  .ant-descriptions-bordered .ant-descriptions-item-content {
+    background-color: #1a202c;
+    color: #fff;
+  }
+}
+
+/* ===== 打印样式 ===== */
+@media print {
+  .judgment-calculator {
+    background: white !important;
+    margin: 0;
+    padding: 20px;
+  }
+
+  .calculator-card {
+    box-shadow: none;
+    border: 1px solid #ddd;
+    background: white !important;
+  }
+
+  .header {
+    background: white !important;
+    color: black !important;
+  }
+
+  .title {
+    color: black !important;
+  }
+
+  .subtitle {
+    color: #666 !important;
+  }
+
+  .calculate-button,
+  .calculator-form {
+    display: none;
+  }
+
+  .error-alert {
+    display: none;
+  }
+
+  .instructions-card {
+    page-break-inside: avoid;
+    background: white !important;
+  }
+
+  .result-card {
+    background: white !important;
+    border: 1px solid #ddd;
+  }
+
+  .interest-amount {
+    color: black !important;
+  }
+}
+
+/* ===== 动画效果 ===== */
+.calculator-card {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.result-card {
+  animation: slideInLeft 0.5s ease-out;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ===== 滚动条样式 ===== */
+.judgment-calculator::-webkit-scrollbar {
+  width: 6px;
+}
+
+.judgment-calculator::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+.judgment-calculator::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+}
+
+.judgment-calculator::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
