@@ -20,7 +20,7 @@ import {
   Spin,
   Progress,
 } from "antd";
-import "./PDFViewer.css";
+import "./index.css";
 
 const PDFViewer = ({
   src,
