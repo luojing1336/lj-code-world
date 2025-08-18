@@ -23,7 +23,7 @@ export default defineConfig({
   },
   plugins: [
     customFontPlugin({
-      fontName: "ComingSoon",
+      fontName: "ShanHaiJiGuSongKe",
     }),
   ],
 });
