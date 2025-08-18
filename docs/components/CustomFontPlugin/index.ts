@@ -5,7 +5,7 @@ export interface CustomFontPluginOptions {
   fontCssPath?: string;
 }
 
-export const customFontPlugin = (
+export const CustomFontPlugin = (
   options: CustomFontPluginOptions
 ): RspressPlugin => {
   const { fontName, fontCssPath = `/docs/public/fonts/${fontName}.css` } = options;
@@ -26,3 +26,6 @@ export const customFontPlugin = (
     },
   };
 };
+
+// Add a default export to prevent Rspress from treating this as a route component
+export default () => null;
