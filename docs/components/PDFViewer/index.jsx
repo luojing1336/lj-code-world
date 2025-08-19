@@ -20,6 +20,7 @@ import {
   Spin,
 } from "antd";
 import "./index.css";
+import { convertGithubToJsdelivr } from "../../utils";
 
 // 常量定义
 const CONSTANTS = {
@@ -39,15 +40,6 @@ const PDFJS_URLS = {
 
 // 工具函数
 const utils = {
-  // 转换GitHub URL为CDN链接
-  convertToCDNUrl: (url) => {
-    if (url?.includes("github.com")) {
-      return url
-        .replace("https://github.com/", "https://cdn.jsdelivr.net/gh/")
-        .replace("/blob/", "@");
-    }
-    return url;
-  },
 
   // 限制数值范围
   clamp: (value, min, max) => Math.min(Math.max(value, min), max),
@@ -406,7 +398,7 @@ const PDFViewer = ({
   const [allPages, setAllPages] = useState([]);
 
   // Memoized values
-  const pdfSrc = useMemo(() => utils.convertToCDNUrl(src), [src]);
+  const pdfSrc = useMemo(() => convertGithubToJsdelivr(src), [src]);
 
   // PDF loading
   const loadPDF = useCallback(async () => {
