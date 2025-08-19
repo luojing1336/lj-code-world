@@ -8,7 +8,7 @@ export interface CustomFontPluginOptions {
 export const CustomFontPlugin = (
   options: CustomFontPluginOptions
 ): RspressPlugin => {
-  const { fontName, fontCssPath = `/docs/public/fonts/${fontName}.css` } = options;
+  const { fontName, fontCssPath = `/docs/public/fonts/${fontName}/${fontName}.css` } = options;
 
   return {
     name: `plugin-font-${fontName}`,

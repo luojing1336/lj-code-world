@@ -23,7 +23,7 @@ export default defineConfig({
   },
   plugins: [
     CustomFontPlugin({
-      fontName: "ShanHaiJiGuSongKe",
+      fontName: "WenKai",
     }),
   ],
 });

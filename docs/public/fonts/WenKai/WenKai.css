@@ -1,0 +1,115 @@
+/* LXGW WenKai 文楷 - Light */
+@font-face {
+  font-family: "LXGW WenKai";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("https://cdn.jsdelivr.net/gh/luojing1336/LxgwWenKai-Lite@main/fonts/TTF/LXGWWenKaiLite-Light.ttf") format("truetype");
+  unicode-range: U+4E00-9FFF, U+3400-4DBF, U+20000-2A6DF, U+2A700-2B73F, 
+    U+2B740-2B81F, U+2B820-2CEAF, U+2CEB0-2EBEF, U+30000-3134F,
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, 
+    U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+
+/* LXGW WenKai 文楷 - Regular */
+@font-face {
+  font-family: "LXGW WenKai";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("https://cdn.jsdelivr.net/gh/luojing1336/LxgwWenKai-Lite@main/fonts/TTF/LXGWWenKaiLite-Regular.ttf") format("truetype");
+  unicode-range: U+4E00-9FFF, U+3400-4DBF, U+20000-2A6DF, U+2A700-2B73F, 
+    U+2B740-2B81F, U+2B820-2CEAF, U+2CEB0-2EBEF, U+30000-3134F,
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, 
+    U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* LXGW WenKai 文楷 - Medium */
+@font-face {
+  font-family: "LXGW WenKai";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("https://cdn.jsdelivr.net/gh/luojing1336/LxgwWenKai-Lite@main/fonts/TTF/LXGWWenKaiLite-Medium.ttf") format("truetype");
+  unicode-range: U+4E00-9FFF, U+3400-4DBF, U+20000-2A6DF, U+2A700-2B73F, 
+    U+2B740-2B81F, U+2B820-2CEAF, U+2CEB0-2EBEF, U+30000-3134F,
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, 
+    U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* LXGW WenKai Mono 文楷等宽 - Light */
+@font-face {
+  font-family: "LXGW WenKai Mono";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("https://cdn.jsdelivr.net/gh/luojing1336/LxgwWenKai-Lite@main/fonts/TTF/LXGWWenKaiMonoLite-Light.ttf") format("truetype");
+  unicode-range: U+4E00-9FFF, U+3400-4DBF, U+20000-2A6DF, U+2A700-2B73F, 
+    U+2B740-2B81F, U+2B820-2CEAF, U+2CEB0-2EBEF, U+30000-3134F,
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, 
+    U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* LXGW WenKai Mono 文楷等宽 - Regular */
+@font-face {
+  font-family: "LXGW WenKai Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("https://cdn.jsdelivr.net/gh/luojing1336/LxgwWenKai-Lite@main/fonts/TTF/LXGWWenKaiMonoLite-Regular.ttf") format("truetype");
+  unicode-range: U+4E00-9FFF, U+3400-4DBF, U+20000-2A6DF, U+2A700-2B73F, 
+    U+2B740-2B81F, U+2B820-2CEAF, U+2CEB0-2EBEF, U+30000-3134F,
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, 
+    U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* LXGW WenKai Mono 文楷等宽 - Medium */
+@font-face {
+  font-family: "LXGW WenKai Mono";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("https://cdn.jsdelivr.net/gh/luojing1336/LxgwWenKai-Lite@main/fonts/TTF/LXGWWenKaiMonoLite-Medium.ttf") format("truetype");
+  unicode-range: U+4E00-9FFF, U+3400-4DBF, U+20000-2A6DF, U+2A700-2B73F, 
+    U+2B740-2B81F, U+2B820-2CEAF, U+2CEB0-2EBEF, U+30000-3134F,
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, 
+    U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* 全局字体设置 */
+body {
+  --rp-font-family-base: "LXGW WenKai", "Inter var experimental", "Inter var",
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", 
+    "Microsoft YaHei", "Hiragino Sans GB", "Heiti SC", "Source Han Sans SC",
+    "Noto Sans CJK SC", "WenQuanYi Micro Hei", sans-serif;
+  
+  --rp-font-family-mono: "LXGW WenKai Mono", "SF Mono", Monaco, "Cascadia Code",
+    "Roboto Mono", Consolas, "Courier New", "Fira Code", "Source Code Pro",
+    "JetBrains Mono", monospace;
+}
+
+/* 代码块字体优化 */
+code,
+pre,
+.code,
+.hljs {
+  font-family: var(--rp-font-family-mono) !important;
+}
+
+/* 标题字体优化 */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "LXGW WenKai", var(--rp-font-family-base);
+  font-weight: 500;
+}
+
+/* 正文字体优化 */
+p, li, td, th, span, div {
+  font-family: var(--rp-font-family-base);
+}
