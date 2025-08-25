@@ -26,4 +26,12 @@ export default defineConfig({
       fontName: "WenKai",
     }),
   ],
+  builderConfig: {
+    source: {
+      define: {
+        'process.env.PUBLIC_SUPABASE_URL': JSON.stringify(process.env.PUBLIC_SUPABASE_URL),
+        'process.env.PUBLIC_SUPABASE_KEY': JSON.stringify(process.env.PUBLIC_SUPABASE_KEY),
+      },
+    },
+  },
 });
