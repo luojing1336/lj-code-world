@@ -7,11 +7,15 @@ hero:
   tagline: 每一行代码都承载着梦想，每一次学习都是向前的脚步
   actions:
     - theme: brand
-      text: 🚀 开启探索之旅
+      text: 🚀 开始吧！
       link: /code/
     - theme: alt
-      text: 📚 访问 GitHub
+      text: 🐱 访问 GitHub
       link: https://github.com/luojing1336
+    - theme: alt
+      text: 📚 访问 Rspress
+      link: https://rspress.rs/
+
   image:
     src: /icon-512-light.png
     alt: LJ Code World Logo

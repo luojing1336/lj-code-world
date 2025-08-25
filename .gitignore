@@ -12,3 +12,11 @@ doc_build/
 .vscode/*
 !.vscode/extensions.json
 .idea
+
+# Vercel
+.vercel
+
+# .env
+.env
+.env.*
+!.env.example
