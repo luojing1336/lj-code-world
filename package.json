@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^6.0.0",
+    "@netlify/config": "^24.0.3",
     "@supabase/supabase-js": "^2.55.0",
     "antd": "^5.27.0",
     "dayjs": "^1.11.13",

@@ -1,6 +1,7 @@
 import { createClient } from "@supabase/supabase-js";
+import { netlifyConfig } from "@netlify/config"
 
 export const supabase = createClient(
-  process.env.RSPRESS_SUPABASE_URL,
-  process.env.RSPRESS_SUPABASE_ANON_KEY
+  netlifyConfig.build.environment.RSPRESS_SUPABASE_URL,
+  netlifyConfig.build.environment.RSPRESS_SUPABASE_ANON_KEY
 );
