@@ -20,7 +20,7 @@ import {
   Spin,
 } from "antd";
 import "./index.css";
-import { convertGithubToJsdelivr } from "../../utils";
+import { convertGithubToJsdelivr } from "../../../utils";
 
 // 常量定义
 const CONSTANTS = {
